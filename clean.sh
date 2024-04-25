@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the application directory
-APP_DIR="/app/opencex"
+APP_DIR="/app"
 
 # Prompt user for confirmation
 read -p "This operation will stop and remove the OpenCEX containers, delete the application directory, and clean up Docker resources. Are you sure you want to proceed? (y/N): " confirm
@@ -9,7 +9,7 @@ read -p "This operation will stop and remove the OpenCEX containers, delete the 
 # Check user confirmation
 if [[ $confirm =~ ^[Yy]$ ]]; then
     # Stop and remove the containers
-    cd "$APP_DIR" || exit
+    cd "$APP_DIR/deploy" || exit
     docker-compose down --remove-orphans
 
     # Remove the application directory
