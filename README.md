@@ -72,9 +72,9 @@ Developed by <a href="https://polygant.net" target="_blank">Polygant</a>.
 
 You need to SSH into your server as root and run the following command:
 
-mkdir -p /app/ultronex ;
+mkdir -p /app/opencex ;
 
-cd /app/ultronex || exit ;
+cd /app/opencex || exit ;
 
 git clone https://github.com/ultronchain/ultronex.git ./deploy ;
 
@@ -82,7 +82,7 @@ cd deploy ;
 
 chmod +x opencex.sh ;
 
-./opencex.sh 2>&1 | tee /tmp/ultronex_install.txt
+./opencex.sh 2>&1 | tee /tmp/opencex_install.txt
 
 Installation time ~ 5 minutes.
 

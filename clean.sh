@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set the application directory
-APP_DIR="/app/ultronex"
+APP_DIR="/app/opencex"
 
 # Prompt user for confirmation
-read -p "This operation will stop and remove the Ultronex containers, delete the application directory, and clean up Docker resources. Are you sure you want to proceed? (y/N): " confirm
+read -p "This operation will stop and remove the OpenCEX containers, delete the application directory, and clean up Docker resources. Are you sure you want to proceed? (y/N): " confirm
 
 # Check user confirmation
 if [[ $confirm =~ ^[Yy]$ ]]; then
@@ -25,8 +25,8 @@ if [[ $confirm =~ ^[Yy]$ ]]; then
     # Remove Docker build cache
     docker builder prune --force
 
-    echo "Ultronex removal completed successfully."
+    echo "OpenCEX removal completed successfully."
 else
-    echo "Ultronex removal aborted."
+    echo "OpenCEX removal aborted."
     exit 1
 fi
