@@ -15,21 +15,36 @@ else
     echo "Docker already installed."
 fi
 
+
 mkdir /app/opencex -p
 cd /app/opencex || exit
-git clone https://github.com/Polygant/OpenCEX-backend.git ./backend
-git clone https://github.com/Polygant/OpenCEX-frontend.git ./frontend
-git clone https://github.com/Polygant/OpenCEX-static.git ./nuxt
-git clone https://github.com/Polygant/OpenCEX-JS-admin.git ./admin
+git clone  https://github.com/Polygant/OpenCEX-backend.git ./backend
+git clone  https://github.com/Polygant/OpenCEX-frontend.git ./frontend
+git clone  https://github.com/Polygant/OpenCEX-static.git ./nuxt
+git clone  https://github.com/Polygant/OpenCEX-JS-admin.git ./admin
 
 echo "`cat <<YOLLOPUKKI
+
+
+ 000000\                                 000000\  00000000\ 00\   00\ 
+00  __00\                               00  __00\ 00  _____|00 |  00 |
+00 /  00 | 000000\   000000\  0000000\  00 /  \__|00 |      \00\ 00  |
+00 |  00 |00  __00\ 00  __00\ 00  __00\ 00 |      00000\     \0000  / 
+00 |  00 |00 /  00 |00000000 |00 |  00 |00 |      00  __|    00  00<  
+00 |  00 |00 |  00 |00   ____|00 |  00 |00 |  00\ 00 |      00  /\00\ 
+ 000000  |0000000  |\0000000\ 00 |  00 |\000000  |00000000\ 00 /  00 |
+ \______/ 00  ____/  \_______|\__|  \__| \______/ \________|\__|  \__|
+          00 |                                                        
+          00 |                                                        
+          \__|  
+
 Hello! This is OpenCEX Setup. Please enter parameters for your exchange.
 If you make a mistake when entering a parameter, don't worry, 
 at the end of each parameter block you will have the opportunity 
 to re-enter the parameters.
 
 * is for the required field. 
-
+		  
 YOLLOPUKKI`"
 
 read -p "Press enter to continue"
@@ -37,6 +52,7 @@ read -p "Press enter to continue"
 cd /app/opencex/backend || exit
 FILE=/app/opencex/backend/.env
 if test ! -f "$FILE"; then
+
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
@@ -51,9 +67,11 @@ ADMIN_MASTERPASS* - master password, used to create
    balance accrual/debit transactions
 SUPPORT_EMAIL - email address of support
 
+-----------------------------------------------------------
 YOLLOPUKKI`"
 
 while true; do
+
 echo -n "PROJECT_NAME* (i.e. SuperExchange): "
 read PROJECT_NAME
 export PROJECT_NAME
@@ -78,6 +96,11 @@ echo -n "SUPPORT_EMAIL: "
 read SUPPORT_EMAIL
 export SUPPORT_EMAIL
 
+#TELEGRAM - telegram chat URL (i.e. opencex)
+#FACEBOOK - facebook page URL
+#TWITTER - twitter page URL
+#LINKEDIN - linkedin page URL
+
 TELEGRAM=opencex
 FACEBOOK=polygant
 TWITTER=polygant
@@ -91,13 +114,14 @@ export LINKEDIN
 export LOGO
 
 echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
 done
+
 
 echo "`cat <<YOLLOPUKKI
 
@@ -111,9 +135,11 @@ TELEGRAM_CHAT_ID - used to send alerts to Telegram
 TELEGRAM_ALERTS_CHAT_ID - monitoring collection and the state of collectors
 TELEGRAM_BOT_TOKEN - token for the Alert bot
 
+-----------------------------------------------------------
 YOLLOPUKKI`"
 
 while true; do
+
 echo -n "RECAPTCHA*: "
 read RECAPTCHA
 export RECAPTCHA
@@ -134,14 +160,18 @@ echo -n "TELEGRAM_BOT_TOKEN: "
 read TELEGRAM_BOT_TOKEN
 export TELEGRAM_BOT_TOKEN
 
+# CAPTCHA_ALLOWED_IP_MASK=172\.\d{1,3}\.\d{1,3}\.\d{1,3}
+# export CAPTCHA_ALLOWED_IP_MASK
+
 echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
 done
+
 
 echo "`cat <<YOLLOPUKKI
 
@@ -154,9 +184,11 @@ INFURA_API_SECRET* - used for the ETH blockchain data
 
 ETHERSCAN_KEY* - used for the ETH blockchain data
 
+-----------------------------------------------------------
 YOLLOPUKKI`"
 
 while true; do
+
 echo -n "INFURA_API_KEY*: "
 read INFURA_API_KEY
 export INFURA_API_KEY
@@ -170,13 +202,14 @@ read ETHERSCAN_KEY
 export ETHERSCAN_KEY
 
 echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
 done
+
 
 echo "`cat <<YOLLOPUKKI
 
@@ -187,9 +220,11 @@ echo "`cat <<YOLLOPUKKI
 BTC_SAFE_ADDR* - bitcoin address. All BTC deposits go there
 ETH_SAFE_ADDR* - ethereum address. All ETH and ERC-20 deposits go there
 
+-----------------------------------------------------------
 YOLLOPUKKI`"
 
 while true; do
+
 echo -n "BTC_SAFE_ADDR*: "
 read BTC_SAFE_ADDR
 export BTC_SAFE_ADDR
@@ -199,13 +234,14 @@ read ETH_SAFE_ADDR
 export ETH_SAFE_ADDR
 
 echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
 done
+
 
 echo "`cat <<YOLLOPUKKI
 
@@ -218,14 +254,18 @@ You can set ENABLED_BNB: False or leave it blank to turn it off.
 BSCSCAN_KEY* - used for the BSC blockchain data
 BNB_SAFE_ADDR* - binance smart chain address. All BNB and BEP-20 deposits go there
 
+---------------------------------------------------------------------------------------
 YOLLOPUKKI`"
 
+
 while true; do
+
 echo -n "ENABLED_BNB (True/False): "
 read ENABLED_BNB
 export ENABLED_BNB
 
 if [ "$ENABLED_BNB" = "True" ]; then
+
 echo -n "BSCSCAN_KEY*: "
 read BSCSCAN_KEY
 export BSCSCAN_KEY
@@ -233,16 +273,22 @@ export BSCSCAN_KEY
 echo -n "BNB_SAFE_ADDR*: "
 read BNB_SAFE_ADDR
 export BNB_SAFE_ADDR
+
+
 fi
 
 echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
 done
+
+
+
+
 
 echo "`cat <<YOLLOPUKKI
 
@@ -255,14 +301,19 @@ You can set ENABLED_TRON: False or leave it blank to turn it off.
 TRONGRID_API_KEY* - used for the Tron blockchain data
 TRX_SAFE_ADDR* - tron address. All TRX and TRC-20 deposits go there
 
+---------------------------------------------------------------------------------------
+
 YOLLOPUKKI`"
 
+
 while true; do
+
 echo -n "ENABLED_TRON (True/False): "
 read ENABLED_TRON
 export ENABLED_TRON
 
 if [ "$ENABLED_TRON" = "True" ]; then
+
 echo -n "TRONGRID_API_KEY*: "
 read TRONGRID_API_KEY
 export TRONGRID_API_KEY
@@ -270,16 +321,19 @@ export TRONGRID_API_KEY
 echo -n "TRX_SAFE_ADDR*: "
 read TRX_SAFE_ADDR
 export TRX_SAFE_ADDR
+
+
 fi
 
 echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
 done
+
 
 echo "`cat <<YOLLOPUKKI
 
@@ -295,12 +349,19 @@ MATIC_SAFE_ADDR* - Polygon address. All MATIC and ERC-20 (MATIC) deposits go the
 
 YOLLOPUKKI`"
 
+
 while true; do
+
 echo -n "ENABLED_MATIC (True/False): "
 read ENABLED_MATIC
 export ENABLED_MATIC
-
+COMMON_TASKS_MATIC=false
+export COMMON_TASKS_MATIC
 if [ "$ENABLED_MATIC" = "True" ]; then
+
+COMMON_TASKS_MATIC=true
+export COMMON_TASKS_MATIC
+
 echo -n "POLYGONSCAN_KEY*: "
 read POLYGONSCAN_KEY
 export POLYGONSCAN_KEY
@@ -308,46 +369,6 @@ export POLYGONSCAN_KEY
 echo -n "MATIC_SAFE_ADDR*: "
 read MATIC_SAFE_ADDR
 export MATIC_SAFE_ADDR
-fi
-
-echo "-----------------------------------------------------------"
-read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
-case $YESORNO in
-    [Yy]* ) break;;
-    [Nn]* ) echo "Re-enter the parameters.";;
-    * ) break;;
-esac
-done
-
-echo "`cat <<YOLLOPUKKI
-
-=======================================================================================
-     STEP 8 of 12. ULC BLOCKCHAIN, ULC and USDT ULC SUPPORT. (optional)
-=======================================================================================
-
-You can set ENABLED_ULC: False or leave it blank to turn it off.
-
-ULCSCAN_KEY* - used for the ULC blockchain data
-ULC_SAFE_ADDR* - ULC address. All ULC and ERC-20 (ULC) deposits go there
----------------------------------------------------------------------------------------
-
-YOLLOPUKKI`"
-
-while true; do
-
-echo -n "ENABLED_ULC (True/False): "
-read ENABLED_ULC
-export ENABLED_ULC
-
-if [ "$ENABLED_ULC" = "True" ]; then
-
-echo -n "ULCSCAN_KEY*: "
-read ULCSCAN_KEY
-export ULCSCAN_KEY
-
-echo -n "ULC_SAFE_ADDR*: "
-read ULC_SAFE_ADDR
-export ULC_SAFE_ADDR
 
 fi
 
@@ -360,10 +381,12 @@ echo "-----------------------------------------------------------"
     esac
 done
 
+
+
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 9 OF 12. EMAIL SERVICE
+     STEP 8 OF 12. EMAIL SERVICE
 ===========================================================
 
 Used for sending notifications and alerts.
@@ -402,10 +425,11 @@ echo "-----------------------------------------------------------"
     esac
 done
 
+
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 10 OF 12. SMS SERVICE TWILIO (optional)
+     STEP 9 OF 12. SMS SERVICE TWILIO (optional)
 ===========================================================
 
 Used for sending notifications and alerts. 
@@ -452,7 +476,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 11 OF 12. KYC PROVIDER SUMSUB (OPTIONAL)
+     STEP 10 OF 12. KYC PROVIDER SUMSUB (OPTIONAL)
 ===========================================================
 
 Used for KYC. 
@@ -491,10 +515,11 @@ echo "-----------------------------------------------------------"
     esac
 done
 
+
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 12 OF 12. KYT PROVIDER SCORECHAIN (OPTIONAL)
+     STEP 11 OF 12. KYT PROVIDER SCORECHAIN (OPTIONAL)
 ===========================================================
 
 Used for KYT. 
@@ -542,7 +567,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 13 OF 12. MARKET MAKING BOT - HUMMINGBOT (OPTIONAL)
+     STEP 12 OF 12. MARKET MAKING BOT - HUMMINGBOT (OPTIONAL)
 ===========================================================
 
 Used for market making and other strategies.
@@ -567,11 +592,11 @@ echo "-----------------------------------------------------------"
     esac
 done
 
-# Instance name
+#echo "Instance name"
 INSTANCE_NAME='opencex'
 export INSTANCE_NAME
 
-# Postgres credentials - user, database name, password, server address and port
+#echo "Postgres credentials - user, database name, password, server address and port"
 DB_NAME=opencex
 DB_USER=opencex
 DB_PASS=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c12)
@@ -583,7 +608,7 @@ export DB_PASS
 export DB_HOST
 export DB_PORT
 
-# RabbitMQ credentials - user, password, server address and port
+#echo "RabbitMQ credentials - user, password, server address and port"
 AMQP_USER=opencex
 AMQP_PASS=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c12)
 AMQP_HOST=rabbitmq
@@ -593,7 +618,7 @@ export AMQP_PASS
 export AMQP_HOST
 export AMQP_PORT
 
-# Bitcoin node credentials - user, password, server address and port
+#echo "Bitcoin node credentials - user, password, server address and port"
 BTC_NODE_USER=opencex
 BTC_NODE_PASS=$(< /dev/urandom tr -dc A-Z-a-z-0-9 | head -c12)
 BTC_NODE_PORT=8332
@@ -603,7 +628,7 @@ export BTC_NODE_PASS
 export BTC_NODE_PORT
 export BTC_NODE_HOST
 
-# Redis credentials - server address and port
+#echo "Redis credentials - server address and port"
 REDIS_HOST=redis
 REDIS_PORT=6379
 REDIS_PASS=
@@ -611,7 +636,7 @@ export REDIS_HOST
 export REDIS_PORT
 export REDIS_PASS
 
-# the address where bots can directly access the django instance
+#echo "the address where bots can directly access the django instance"
 BOTS_API_BASE_URL=http://opencex:8080
 export BOTS_API_BASE_URL
 
@@ -625,6 +650,8 @@ export BOT_PASSWORD
 
 envsubst < /app/opencex/backend/.env.template > /app/opencex/backend/.env
 
+fi
+
 source /app/opencex/backend/.env
 set -a
 cd /app/opencex/frontend || exit
@@ -635,6 +662,7 @@ envsubst < /app/opencex/frontend/src/example.local_config.js > /app/opencex/fron
 ### save to env
 
 cat << EOF >> /app/opencex/backend/.env
+
 
 #opencex frontend values
 RECAPTCHA=$RECAPTCHA
@@ -651,6 +679,7 @@ fi
 ##################
 # START BUILDING!
 ##################
+
 
 # build front
 mkdir -p /app/opencex/frontend/deploy/
@@ -679,10 +708,12 @@ sed -i "s/ADMIN_BASE_URL/$ADMIN_BASE_URL/g" /app/opencex/admin/deploy/default.co
 envsubst < /app/opencex/admin/.env.template > /app/opencex/admin/src/local_config.js
 docker build -t admin -f deploy/Dockerfile .
 
+
 # build backend
 cd /app/opencex/backend/ || exit
 chmod +x /app/opencex/backend/manage.py
 docker build -t opencex .
+
 
 ### install Caddy
 
@@ -868,6 +899,25 @@ services:
       - caddy
       - bitcoind
       - opencex
+
+    opencex-ultron-blocks:
+     container_name: opencex-ultron-blocks
+     image: opencex:latest
+     command: bash -c "celery -A exchange worker -l info -n ulc_new_blocks -Q ulc_new_blocks -c 1 "
+     restart: always
+     volumes:
+      - /app/opencex/backend:/app
+     networks:
+      - caddy
+     depends_on:
+      - postgresql
+      - redis
+      - rabbitmq
+      - frontend
+      - nuxt
+      - caddy
+      - bitcoind
+      - opencex  
 
     opencex-deposits:
      container_name: opencex-deposits
@@ -1105,6 +1155,8 @@ docker exec -it opencex python ./manage.py migrate
 docker exec -it opencex python ./manage.py collectstatic
 docker compose up -d
 
+
+
 cd /app/opencex || exit
 docker compose stop
 cat << EOF > /app/opencex/bitcoind_data/bitcoin.conf
@@ -1131,6 +1183,7 @@ docker compose up -d
 curl --location 'http://alertbot.plgdev.com/registration' \
 --header 'Content-Type: application/json' \
 --data "{\"domain\": \"${DOMAIN}\"}"
+
 
 # cleanup
 # cd /app/opencex && docker compose down
