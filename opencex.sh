@@ -56,7 +56,7 @@ if test ! -f "$FILE"; then
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 1 OF 12. PROJECT VARIABLES
+     STEP 1 OF 13. PROJECT VARIABLES
 ===========================================================
 
 PROJECT_NAME* - name of your exchange
@@ -126,7 +126,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 2 OF 12. COMMON SERVICES
+     STEP 2 OF 13. COMMON SERVICES
 ===========================================================
 
 RECAPTCHA* - Google Captcha site key
@@ -176,7 +176,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 3 OF 12. BLOCKCHAIN SERVICES
+     STEP 3 OF 13. BLOCKCHAIN SERVICES
 ===========================================================
 
 INFURA_API_KEY* - used for the ETH blockchain data
@@ -214,7 +214,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 4 OF 12. SAFE ADDRESSES
+     STEP 4 OF 13. SAFE ADDRESSES
 ===========================================================
 
 BTC_SAFE_ADDR* - bitcoin address. All BTC deposits go there
@@ -246,7 +246,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 =======================================================================================
-     STEP 5 of 12. BINANCE BSC BLOCKCHAIN, BNB and USDT BEP-20 SUPPORT. (optional)
+     STEP 5 OF 13. BINANCE BSC BLOCKCHAIN, BNB and USDT BEP-20 SUPPORT. (optional)
 =======================================================================================
 
 You can set ENABLED_BNB: False or leave it blank to turn it off.
@@ -293,7 +293,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 =======================================================================================
-     STEP 6 of 12. TRON BLOCKCHAIN, TRX and USDT TRC-20 SUPPORT. (optional)
+     STEP 6 OF 13. TRON BLOCKCHAIN, TRX and USDT TRC-20 SUPPORT. (optional)
 =======================================================================================
 
 You can set ENABLED_TRON: False or leave it blank to turn it off.
@@ -338,7 +338,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 =======================================================================================
- STEP 7 of 12. POLYGON BLOCKCHAIN, MATIC and USDT MATIC SUPPORT. (optional)
+ STEP 7 OF 13. POLYGON BLOCKCHAIN, MATIC and USDT MATIC SUPPORT. (optional)
 =======================================================================================
 
 You can set ENABLED_MATIC: False or leave it blank to turn it off.
@@ -385,8 +385,52 @@ done
 
 echo "`cat <<YOLLOPUKKI
 
+=======================================================================================
+ STEP 8 OF 13. ULTRON BLOCKCHAIN, MATIC and USDT MATIC SUPPORT. (optional)
+=======================================================================================
+
+You can set ENABLED_ULC: False or leave it blank to turn it off.
+
+POLYGONSCAN_KEY* - used for the Polygon blockchain data
+MATIC_SAFE_ADDR* - Polygon address. All MATIC and ERC-20 (MATIC) deposits go there
+---------------------------------------------------------------------------------------
+
+YOLLOPUKKI`"
+
+
+while true; do
+
+echo -n "ENABLED_ULC (True/False): "
+read ENABLED_ULC
+export ENABLED_ULC
+COMMON_TASKS_ULC=false
+export COMMON_TASKS_ULC
+if [ "$ENABLED_ULC" = "True" ]; then
+
+COMMON_TASKS_ULC=true
+export COMMON_TASKS_ULC
+
+echo -n "ULC_SAFE_ADDR*: "
+read ULC_SAFE_ADDR
+export ULC_SAFE_ADDR
+
+fi
+
+echo "-----------------------------------------------------------"
+    read -p "IS EVERYTHING CORRECT? (y or n)" YESORNO
+    case $YESORNO in
+        [Yy]* ) break;;
+        [Nn]* ) echo "Re-enter the parameters.";;
+        * ) break;;
+    esac
+done
+
+
+
+echo "`cat <<YOLLOPUKKI
+
 ===========================================================
-     STEP 8 OF 12. EMAIL SERVICE
+     STEP 9 OF 13. EMAIL SERVICE
 ===========================================================
 
 Used for sending notifications and alerts.
@@ -429,7 +473,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 9 OF 12. SMS SERVICE TWILIO (optional)
+     STEP 10 OF 13. SMS SERVICE TWILIO (optional)
 ===========================================================
 
 Used for sending notifications and alerts. 
@@ -476,7 +520,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 10 OF 12. KYC PROVIDER SUMSUB (OPTIONAL)
+     STEP 11 OF 13. KYC PROVIDER SUMSUB (OPTIONAL)
 ===========================================================
 
 Used for KYC. 
@@ -519,7 +563,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 11 OF 12. KYT PROVIDER SCORECHAIN (OPTIONAL)
+     STEP 12 OF 13. KYT PROVIDER SCORECHAIN (OPTIONAL)
 ===========================================================
 
 Used for KYT. 
@@ -567,7 +611,7 @@ done
 echo "`cat <<YOLLOPUKKI
 
 ===========================================================
-     STEP 12 OF 12. MARKET MAKING BOT - HUMMINGBOT (OPTIONAL)
+     STEP 13 OF 13. MARKET MAKING BOT - HUMMINGBOT (OPTIONAL)
 ===========================================================
 
 Used for market making and other strategies.
